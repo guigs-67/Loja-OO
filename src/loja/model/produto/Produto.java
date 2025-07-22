@@ -6,14 +6,12 @@ public class Produto {
     private String nome;
     private String descricao;
     private BigDecimal preco;
-    private int quantidade;
 
-    public Produto(int codigo, String nome, String descricao, BigDecimal preco, int quantidade) {
+    public Produto(int codigo, String nome, String descricao, BigDecimal preco) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.quantidade = quantidade;
     }
 
     public int getCodigo() {
@@ -32,10 +30,6 @@ public class Produto {
         return this.preco;
     }
 
-    public int getQuantidade(){
-        return this.quantidade;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -43,11 +37,6 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    public void setQuantidade(int quantidade){
-        this.quantidade = quantidade;
-    }
-
     public void setPreco(BigDecimal preco) {
         if (preco != null && preco.compareTo(BigDecimal.ZERO) >= 0) {
             this.preco = preco;
