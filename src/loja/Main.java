@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		java.util.Scanner sc = new Scanner (System.in);
-		int opcaoInterna, codigo, estoque, ano, mes, dia;
+		int opcaoInterna, codigo, estoque,quantidade, ano, mes, dia;
 		String nome, descricao, linkDownload, endereco, telefone, cpf, cnpj;
 		double pesoKg, tamanhoArquivoMB;
 		BigDecimal preco;
@@ -40,14 +40,20 @@ public class Main {
 				System.out.println("Digite qual o tipo de produto que você deseja cadastrar: ");
 				opcaoInterna = sc.nextInt();
 				
+				 sc.nextLine();
+
 				if (opcaoInterna == 1) {
 					System.out.println("Digite o código, nome, descrição, preço, quantidade em estoque e peso do produto:");
 					codigo = sc.nextInt();
+					sc.nextLine();
 					nome = sc.nextLine();
 					descricao = sc.nextLine();
 					preco = sc.nextBigDecimal();
-					quantidade = sc.nextInt();
+					sc.nextLine();
+					estoque = sc.nextInt();
+					sc.nextLine();
 					pesoKg = sc.nextDouble();
+					sc.nextLine();
 					
 					proFis = new ProdutoFisico(codigo, nome, descricao, preco, pesoKg,estoque);
 					for(int i = 0; i < BDProduto.length; i++) {
@@ -58,15 +64,18 @@ public class Main {
 					else if (opcaoInterna == 2) {
 						System.out.println("Digite o código, nome, descrição, preço, quantidade em estoque, link de download e tamanho do arquivo em MB:");
 						codigo = sc.nextInt();
+						sc.nextLine(); 
 						nome = sc.nextLine();
 						descricao = sc.nextLine();
 						preco = sc.nextBigDecimal();
-						quantidade = sc.nextInt();
+						sc.nextLine(); 
+						estoque = sc.nextInt();
+						sc.nextLine(); 
 						linkDownload = sc.nextLine();
 						tamanhoArquivoMB = sc.nextDouble();
+						sc.nextLine(); 
 						
 						proDig = new ProdutoDigital(codigo, nome, descricao, preco, linkDownload, tamanhoArquivoMB);
-						
 						for(int i = 0; i < BDProduto.length; i++) {
 							if(BDProduto[i] == null)
 								BDProduto[i] = proDig;
@@ -75,14 +84,19 @@ public class Main {
 						else if (opcaoInterna == 3) {
 							System.out.println("Digite o código, nome, descrição, preço, quantidade em estoque, peso do produto e data de validade (DD MM YYYY):");
 							codigo = sc.nextInt();
+							sc.nextLine(); 
 							nome = sc.nextLine();
 							descricao = sc.nextLine();
 							preco = sc.nextBigDecimal();
-							quantidade = sc.nextInt();
+							sc.nextLine(); 
+							estoque = sc.nextInt();
+							sc.nextLine(); 
 							pesoKg = sc.nextDouble();
+							sc.nextLine(); 
 							dia = sc.nextInt();
 							mes = sc.nextInt();
 							ano = sc.nextInt();
+							sc.nextLine(); 
 							dataValidade = LocalDate.of(ano, mes, dia);
 							
 							proPer = new ProdutoPerecivel(codigo, nome, descricao, preco, pesoKg,estoque, dataValidade);
@@ -95,38 +109,40 @@ public class Main {
 				// Alterar produto
 				
 			case 3:
-				System.out.println("1. Pessoa física ;");
-				System.out.println("2. Pessoa Jurídica;");
-                System.out.println("Digite qual o tipo de cliente que você deseja cadastrar: ");
-				opcaoInterna = sc.nextInt();
-
-				if (opcaoInterna == 1) {
-					System.out.println("Digite o nome, endereço, telefone, cpf");
-					nome = sc.nextLine();
-					endereco = sc.nextLine();
-					telefone = sc.nextInt();
-					cpf = sc.nextLine();
-
-					pesFis = new PessoaFisica(nome, endereco, telefone,cpf);
-					for(int i = 0; i < BDCliente.length; i++) {
-						if(BDCliente[i] == null)
-							BDCliente[i] = pesFis;
-					}
-				}
-				else if (opcaoInterna == 2) {
-					System.out.println("Digite o nome, endereço, telefone, cnpj");
-					nome = sc.nextLine();
-					endereco = sc.nextLine();
-					telefone = sc.nextInt();
-					cnpj = sc.nextLine();
+						System.out.println("1. Pessoa física ;");
+						System.out.println("2. Pessoa Jurídica;");
+						System.out.println("Digite qual o tipo de cliente que você deseja cadastrar: ");
+						opcaoInterna = sc.nextInt();
 						
-					pesJur = new PessoaJuridica(nome, endereco, telefone,cnpj);
-					for(int i = 0; i < BDCliente.length; i++) {
-						if(BDCliente[i] == null)
-							BDCliente[i] = pesJUR;
-					}
-				}
+						sc.nextLine();
 
+						if (opcaoInterna == 1) {
+							System.out.println("Digite o nome, endereço, telefone, cpf");
+							nome = sc.nextLine();
+							endereco = sc.nextLine();
+							telefone = sc.nextLine(); 
+							cpf = sc.nextLine();
+
+							pesFis = new PessoaFisica(nome, endereco, telefone, cpf);
+							for (int i = 0; i < BDCliente.length; i++) {
+								if (BDCliente[i] == null)
+									BDCliente[i] = pesFis;
+							}
+
+						} else if (opcaoInterna == 2) {
+							System.out.println("Digite o nome, endereço, telefone, cnpj");
+							nome = sc.nextLine();
+							endereco = sc.nextLine();
+							telefone = sc.nextLine(); 
+							cnpj = sc.nextLine();
+							
+							
+							pesJur = new PessoaJuridica(nome, endereco, telefone, cnpj);
+							for (int i = 0; i < BDCliente.length; i++) {
+								if (BDCliente[i] == null)
+									BDCliente[i] = pesJur; 
+							}
+						}
 
 			case 4:
 				// Alterar cliente
