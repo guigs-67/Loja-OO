@@ -15,4 +15,10 @@ private String cnpj;
 	public void setCnpj (String cnpj) {
 		this.cnpj = cnpj; 
 	} 
+
+	@Override
+    public void exibirDetalhes() {
+	    super.exibirDetalhes();
+		System.out.println("CNPJ: " getCnpj());
+	}
 }

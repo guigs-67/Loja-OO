@@ -24,4 +24,11 @@ public class ProdutoDigital extends Produto {
     public double getTamanhoArquivoMB() {
         return tamanhoArquivoMB;
     }
+
+    @Override
+    public void exibirDetalhes() {
+        super.exibirDetalhes(); 
+        System.out.println("Tamanho: " getTamanhoArquivoMB());
+        System.out.println("Link: " getLinkDownload());
+    }
 }

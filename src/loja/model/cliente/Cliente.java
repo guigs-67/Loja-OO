@@ -34,4 +34,10 @@ public class Cliente {
 	public void setTelefone (String telefone) {
 		this.telefone = telefone;
 	}
+	
+	public void exibirDetalhes() {
+    System.out.println("Nome: " + getNome());
+    System.out.println("Endereço: " + getEndereco());
+    System.out.println("Telefone: " + getTelefone());
+ }
 }

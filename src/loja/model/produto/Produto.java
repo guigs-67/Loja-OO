@@ -44,4 +44,10 @@ public class Produto {
             System.out.println("Erro: O preço não pode ser nulo ou negativo.");
         }
     }
+
+    public void exibirDetalhes() {
+        System.out.println("Código: " + getCodigo());
+        System.out.println("Nome: " + getNome());
+        System.out.printf("Preço: R$ %.2f%n", getPreco());
+    }
 }

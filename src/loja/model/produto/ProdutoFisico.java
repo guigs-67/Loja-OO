@@ -29,7 +29,7 @@ public class ProdutoFisico extends Produto {
         this.estoque = estoque;
     }
 
-public boolean darBaixaEstoque(int quantidadeParaRemover) {
+    public boolean darBaixaEstoque(int quantidadeParaRemover) {
         if (quantidadeParaRemover <= 0) {
             System.out.println("Tentativa de baixa com quantidade inválida (" + quantidadeParaRemover + "). Operação cancelada.");
             return false;
@@ -43,5 +43,12 @@ public boolean darBaixaEstoque(int quantidadeParaRemover) {
             System.out.println("Não temos estoque suficiente de " + getNome());
             return false; //
         }
+    }
+
+    @Override 
+     public void exibirDetalhes() {
+        super.exibirDetalhes();
+        System.out.println("Estoque: " + getEstoque());
+        System.out.println("Peso: " + getPesoKg());
     }
 }
