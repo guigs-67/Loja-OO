@@ -187,8 +187,19 @@ public class Main {
 				// perguntar se tem cupom de desconto (só pra ter um extra); resumo subtotal e total
 				
 			case 6:
-				// listar notas emitidas (array de objetos)
-				
+					System.out.println("\n--- Lista de Notas Emitidas ---");
+					boolean encontrouNota = false;
+					for (Nota nota : bdNota) {
+						if (nota != null) {
+							nota.exibirNotaFiscal();
+							encontrouNota = true;
+						}
+					}
+					if (!encontrouNota) {
+						System.out.println("Nenhuma nota fiscal foi emitida no sistema.");
+					}
+					break; 	
+								
 			case 7:
 					System.out.println("\n--- Lista de Produtos Cadastrados ---");
     				boolean encontrouProduto = false;
@@ -216,7 +227,7 @@ public class Main {
        		 }
    		 }
     				if (!encontrouCliente) {
-      				  System.out.println("Nenhum cliente cadastrado no sistema.");
+      			  System.out.println("Nenhum cliente cadastrado no sistema.");
     	}
     				break;
 			}
