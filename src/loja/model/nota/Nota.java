@@ -87,10 +87,10 @@ public class Nota {
         ProxPosicao++;
     }
 
-    public BigDecimal somaSubtotalFinal(){
-        BigDecimal acc = new BigDecimal(0);
-        for(int i = 0; i < itens.length; i++){
-            acc = acc.add(itens[i].getPrecoFinalItem());
+    public BigDecimal somaSubtotalFinal() {
+        BigDecimal acc = new BigDecimal("0.0"); 
+        for (int i = 0; i < this.ProxPosicao; i++) {
+            acc = acc.add(this.itens[i].getPrecoFinalItem());
         }
         return acc;
     }
@@ -104,5 +104,41 @@ public class Nota {
     public int atualizaID(){
         return this.id = this.id + 1;
     }
+
+   public void exibirNotaFiscal() {
+    System.out.println("\n=============================================");
+    System.out.println("            NOTA FISCAL                  ");
+    System.out.println("=============================================");
+    System.out.println("ID da Nota: " + this.getId());
+    System.out.println("Data de Emissão: " + this.getData());
+    System.out.println("---------------------------------------------");
+    System.out.println("CLIENTE:");
+    this.getCliente().exibirDetalhes();
+    System.out.println("---------------------------------------------");
+    System.out.println("ITENS DA COMPRA:");
+
+    // Loop para mostrar os itens de forma simples
+    for (int i = 0; i < this.ProxPosicao; i++) {
+        ItemNota item = this.itens[i];
+        Produto produto = item.getProduto();
+
+        // Imprime cada item em uma linha usando println e concatenação
+        System.out.println(
+            item.getQuantidade() + "x " +
+            produto.getNome() +
+            " (R$ " + produto.getPreco() + ")" +
+            " - Subtotal: R$ " + item.getPrecoFinalItem()
+        );
+    }
+
+    System.out.println("---------------------------------------------");
+    
+    // Imprime os totais de forma simples
+    System.out.println("SUBTOTAL: R$ " + this.somaSubtotalFinal());
+    System.out.println("FRETE: R$ " + this.getFrete());
+    System.out.println("=============================================");
+    System.out.println("TOTAL A PAGAR: R$ " + this.somaTotalFinal());
+    System.out.println("=============================================\n");
+}
 }
 
