@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		java.util.Scanner sc = new Scanner (System.in);
-		int opcaoInterna, codigo, quantidade, ano, mes, dia;
+		int opcaoInterna, codigo, estoque, ano, mes, dia;
 		String nome, descricao, linkDownload, endereco, telefone, cpf, cnpj;
 		double pesoKg, tamanhoArquivoMB;
 		BigDecimal preco;
@@ -45,7 +45,7 @@ public class Main {
 					quantidade = sc.nextInt();
 					pesoKg = sc.nextDouble();
 					
-					proFis = new ProdutoFisico(codigo, nome, descricao, preco, quantidade, pesoKg);
+					proFis = new ProdutoFisico(codigo, nome, descricao, preco, pesoKg,estoque);
 					for(int i = 0; i < BDProduto.length; i++) {
 						if(BDProduto[i] == null)
 							BDProduto[i] = proFis;
@@ -61,7 +61,7 @@ public class Main {
 						linkDownload = sc.nextLine();
 						tamanhoArquivoMB = sc.nextDouble();
 						
-						proDig = new ProdutoDigital(codigo, nome, descricao, preco, quantidade, linkDownload, tamanhoArquivoMB);
+						proDig = new ProdutoDigital(codigo, nome, descricao, preco, linkDownload, tamanhoArquivoMB);
 						
 						for(int i = 0; i < BDProduto.length; i++) {
 							if(BDProduto[i] == null)
@@ -81,7 +81,7 @@ public class Main {
 							ano = sc.nextInt();
 							dataValidade = LocalDate.of(ano, mes, dia);
 							
-							proPer = new ProdutoPerecivel(codigo, nome, descricao, preco, quantidade, pesoKg, dataValidade);
+							proPer = new ProdutoPerecivel(codigo, nome, descricao, preco, pesoKg,estoque, dataValidade);
 							for(int i = 0; i < BDProduto.length; i++) {
 								if(BDProduto[i] == null)
 									BDProduto[i] = proPer;
