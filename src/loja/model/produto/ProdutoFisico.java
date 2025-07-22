@@ -5,7 +5,7 @@ public class ProdutoFisico extends Produto {
 
     private double pesoKg;
 
-    public ProdutoFisico(int codigo, String nome, String descricao, BigDecimal preco, double pesoKg, int quantidade) {
+    public ProdutoFisico(int codigo, String nome, String descricao, BigDecimal preco, int quantidade, double pesoKg) {
         super(codigo, nome, descricao, preco, quantidade);
 
         this.pesoKg = pesoKg;

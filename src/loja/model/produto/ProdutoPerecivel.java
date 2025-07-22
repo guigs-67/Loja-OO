@@ -6,9 +6,9 @@ public class ProdutoPerecivel extends ProdutoFisico {
 
     private LocalDate dataValidade;
 
-    public ProdutoPerecivel(int codigo, String nome, String descricao, BigDecimal preco, double pesoKg, int quantidade, LocalDate dataValidade){
+    public ProdutoPerecivel(int codigo, String nome, String descricao, BigDecimal preco, int quantidade, double pesoKg, LocalDate dataValidade){
 
-        super(codigo, nome, descricao, preco, pesoKg, quantidade);
+        super(codigo, nome, descricao, preco, quantidade, pesoKg);
 
         this.dataValidade = dataValidade;
 

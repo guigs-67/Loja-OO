@@ -1,11 +1,10 @@
 package loja.model.nota;
 
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import loja.model.cliente;
-import loja.model.produto;
+import loja.model.cliente.*;
 
 public class Nota {
 
@@ -27,7 +26,7 @@ public class Nota {
         this.frete = new BigDecimal(50);
         this.total = total;
         this.id = 1;
-        this.data = LocalDate.now(0);
+        this.data = LocalDate.now();
         this.ProxPosicao = 0;
     }
 
