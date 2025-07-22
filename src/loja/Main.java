@@ -1,4 +1,4 @@
-package loja;
+ package loja;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

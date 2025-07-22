@@ -1,7 +1,7 @@
 package loja.model.produto;
 import java.math.BigDecimal;
+public abstract class Produto {
 
-public class Produto {
     private int codigo;
     private String nome;
     private String descricao;
@@ -9,7 +9,7 @@ public class Produto {
     private static int contador = 0;
 
     public Produto(String nome, String descricao, BigDecimal preco) {
-    	contador++;
+        contador++;
         this.codigo = contador;
         this.nome = nome;
         this.descricao = descricao;
@@ -39,6 +39,7 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     public void setPreco(BigDecimal preco) {
         if (preco != null && preco.compareTo(BigDecimal.ZERO) >= 0) {
             this.preco = preco;
@@ -52,4 +53,5 @@ public class Produto {
         System.out.println("Nome: " + getNome());
         System.out.printf("Preço: R$ %.2f%n", getPreco());
     }
+    public abstract String getTipoProduto();
 }

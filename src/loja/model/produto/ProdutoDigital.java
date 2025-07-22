@@ -4,11 +4,10 @@ import java.math.BigDecimal;
 public class ProdutoDigital extends Produto {
 
     private String linkDownload;
-    private double tamanhoArquivoMB; 
+    private double tamanhoArquivoMB;
 
     public ProdutoDigital(String nome, String descricao, BigDecimal preco, String linkDownload, double tamanhoArquivoMB) {
         super(nome, descricao, preco);
-
         this.linkDownload = linkDownload;
         this.tamanhoArquivoMB = tamanhoArquivoMB;
     }
@@ -27,8 +26,13 @@ public class ProdutoDigital extends Produto {
 
     @Override
     public void exibirDetalhes() {
-        super.exibirDetalhes(); 
-        System.out.println("Tamanho: " + getTamanhoArquivoMB());
+        super.exibirDetalhes();
+        System.out.println("Tamanho: " + getTamanhoArquivoMB() + " MB");
         System.out.println("Link: " + getLinkDownload());
+    }
+    
+    @Override
+    public String getTipoProduto() {
+        return "Digital";
     }
 }

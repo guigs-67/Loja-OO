@@ -2,14 +2,17 @@ package loja.model.produto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProdutoPerecivel extends ProdutoFisico {
+public class ProdutoPerecivel extends Produto {
 
+    private double pesoKg;
+    private int estoque;
     private LocalDate dataValidade;
 
     public ProdutoPerecivel(String nome, String descricao, BigDecimal preco, double pesoKg,int estoque, LocalDate dataValidade){
 
-        super(nome, descricao, preco, pesoKg,estoque);
-
+        super(nome, descricao, preco);
+        this.estoque = estoque;
+        this.pesoKg = pesoKg;
         this.dataValidade = dataValidade;
 
     }
