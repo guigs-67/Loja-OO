@@ -22,8 +22,12 @@ public class Main {
 		ProdutoDigital proDig;
 		ProdutoFisico proFis;
 		ProdutoPerecivel proPer;
+
+		PessoaFisica pesFis;
+		PessoaJuridica pesJur;
 		
 		Produto[] BDProduto = new Produto[10];
+		Cliente[] BDCliente = new Cliente[10];
 		
 		menu();
 		int opcao = sc.nextInt();
@@ -91,8 +95,39 @@ public class Main {
 				// Alterar produto
 				
 			case 3:
-				// Cadastro do cliente (perguntar se é pf ou pj)
-				
+				System.out.println("1. Pessoa física ;");
+				System.out.println("2. Pessoa Jurídica;");
+                System.out.println("Digite qual o tipo de cliente que você deseja cadastrar: ");
+				opcaoInterna = sc.nextInt();
+
+				if (opcaoInterna == 1) {
+					System.out.println("Digite o nome, endereço, telefone, cpf");
+					nome = sc.nextLine();
+					endereco = sc.nextLine();
+					telefone = sc.nextInt();
+					cpf = sc.nextLine();
+
+					pesFis = new PessoaFisica(nome, endereco, telefone,cpf);
+					for(int i = 0; i < BDCliente.length; i++) {
+						if(BDCliente[i] == null)
+							BDCliente[i] = pesFis;
+					}
+				}
+				else if (opcaoInterna == 2) {
+					System.out.println("Digite o nome, endereço, telefone, cnpj");
+					nome = sc.nextLine();
+					endereco = sc.nextLine();
+					telefone = sc.nextInt();
+					cnpj = sc.nextLine();
+						
+					pesJur = new PessoaJuridica(nome, endereco, telefone,cnpj);
+					for(int i = 0; i < BDCliente.length; i++) {
+						if(BDCliente[i] == null)
+							BDCliente[i] = pesJUR;
+					}
+				}
+
+
 			case 4:
 				// Alterar cliente
 				
