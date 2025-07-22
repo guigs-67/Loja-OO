@@ -17,7 +17,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		java.util.Scanner sc = new Scanner (System.in);
-		int opcaoInterna, codigo, estoque, quantidade, ano, mes, dia;
+		int opcaoInterna, estoque, quantidade, ano, mes, dia;
 		String nome, descricao, linkDownload, endereco, telefone, cpf, cnpj;
 		double pesoKg, tamanhoArquivoMB;
 		BigDecimal preco;
@@ -45,20 +45,17 @@ public class Main {
 				System.out.println("Digite qual o tipo de produto que você deseja cadastrar: ");
 				opcaoInterna = sc.nextInt();
 				
-				 sc.nextLine();
+				sc.nextLine();
 
-				 if (ultimoProduto == BDProduto.length) {
-				        Produto[] aux = new Produto[BDProduto.length + 1];
-				        for (int i = 0; i < BDProduto.length; i++) {
-				            aux[i] = BDProduto[i];
-				        }
-				        BDProduto = aux;
-				 }
+				if (ultimoProduto == BDProduto.length) {
+					Produto[] aux = new Produto[BDProduto.length + 1];
+					for (int i = 0; i < BDProduto.length; i++) {
+						aux[i] = BDProduto[i];
+						}
+					BDProduto = aux;
+					}
 				 
 				if (opcaoInterna == 1) {
-					System.out.println("Digite o código do produto:");
-					codigo = sc.nextInt();
-					sc.nextLine();
 					System.out.println("Digite o nome do produto: ");
 					nome = sc.nextLine();
 					System.out.println("Digite a descrição do produto: ");
@@ -73,83 +70,74 @@ public class Main {
 					pesoKg = sc.nextDouble();
 					sc.nextLine();
 					
-					proFis = new ProdutoFisico(codigo, nome, descricao, preco, pesoKg,estoque);
+					proFis = new ProdutoFisico(nome, descricao, preco, pesoKg,estoque);
 					BDProduto[ultimoProduto] = proFis; 
 					ultimoProduto++;
-				}
-					else if (opcaoInterna == 2) {
-						System.out.println("Digite o código do produto:");
-						codigo = sc.nextInt();
-						sc.nextLine();
-						System.out.println("Digite o nome do produto: ");
-						nome = sc.nextLine();
-						System.out.println("Digite a descrição do produto: ");;
-						descricao = sc.nextLine();
-						System.out.println("Digite o preço do produto: ");
-						preco = sc.nextBigDecimal();
-						sc.nextLine();
-						System.out.println("Digite a quantidade em estoque do produto: ");
-						estoque = sc.nextInt();
-						sc.nextLine();
-						System.out.println("Digite o link para download: ");
-						linkDownload = sc.nextLine();
-						System.out.println("Digite o tamanho do arquivo em MB:");
-						tamanhoArquivoMB = sc.nextDouble();
-						sc.nextLine(); 
-						
-						proDig = new ProdutoDigital(codigo, nome, descricao, preco, linkDownload, tamanhoArquivoMB);
-						BDProduto[ultimoProduto] = proDig; 
-						ultimoProduto++;
 					}
-					else if (opcaoInterna == 3) {
-						System.out.println("Digite o código do produto:");
-						codigo = sc.nextInt();
-						sc.nextLine();
-						System.out.println("Digite o nome do produto: ");
-						nome = sc.nextLine();
-						System.out.println("Digite a descrição do produto: ");;
-						descricao = sc.nextLine();
-						System.out.println("Digite o preço do produto: ");
-						preco = sc.nextBigDecimal();
-						sc.nextLine();
-						System.out.println("Digite a quantidade em estoque do produto: ");
-						estoque = sc.nextInt();
-						sc.nextLine();
-						System.out.println("Digite o peso em kg do produto: ");
-						pesoKg = sc.nextDouble();
-						sc.nextLine();
-						System.out.println("Digite o dia da data de validade: ");
-						dia = sc.nextInt();
-						System.out.println("Digite o mês da data de validade: ");
-						mes = sc.nextInt();
-						System.out.println("Digite o ano da data de validade: ");
-						ano = sc.nextInt();
-						sc.nextLine(); 
-						dataValidade = LocalDate.of(ano, mes, dia);
-							
-						proPer = new ProdutoPerecivel(codigo, nome, descricao, preco, pesoKg,estoque, dataValidade);
-						BDProduto[ultimoProduto] = proPer; 
-						ultimoProduto++;
+				else if (opcaoInterna == 2) {
+					System.out.println("Digite o nome do produto: ");
+					nome = sc.nextLine();
+					System.out.println("Digite a descrição do produto: ");						
+					descricao = sc.nextLine();
+					System.out.println("Digite o preço do produto: ");
+					preco = sc.nextBigDecimal();
+					sc.nextLine();
+					System.out.println("Digite o link para download: ");
+					linkDownload = sc.nextLine();
+					System.out.println("Digite o tamanho do arquivo em MB:");
+					tamanhoArquivoMB = sc.nextDouble();
+					sc.nextLine(); 
+						
+					proDig = new ProdutoDigital(nome, descricao, preco, linkDownload, tamanhoArquivoMB);
+					BDProduto[ultimoProduto] = proDig; 
+					ultimoProduto++;
+					}
+				else if (opcaoInterna == 3) {
+					System.out.println("Digite o nome do produto: ");
+					nome = sc.nextLine();
+					System.out.println("Digite a descrição do produto: ");;
+					descricao = sc.nextLine();
+					System.out.println("Digite o preço do produto: ");
+					preco = sc.nextBigDecimal();
+					sc.nextLine();
+					System.out.println("Digite a quantidade em estoque do produto: ");
+					estoque = sc.nextInt();
+					sc.nextLine();
+					System.out.println("Digite o peso em kg do produto: ");
+					pesoKg = sc.nextDouble();
+					sc.nextLine();
+					System.out.println("Digite o dia da data de validade: ");
+					dia = sc.nextInt();
+					System.out.println("Digite o mês da data de validade: ");
+					mes = sc.nextInt();
+					System.out.println("Digite o ano da data de validade: ");
+					ano = sc.nextInt();
+					sc.nextLine(); 
+					dataValidade = LocalDate.of(ano, mes, dia);
+					
+					proPer = new ProdutoPerecivel(nome, descricao, preco, pesoKg,estoque, dataValidade);
+					BDProduto[ultimoProduto] = proPer;
+					ultimoProduto++;
 					}
 				break;
 			case 2:
 				// Alterar produto
 				
 			case 3:
-					System.out.println("1. Pessoa física ;");
-					System.out.println("2. Pessoa Jurídica;");
-					System.out.println("Digite qual o tipo de cliente que você deseja cadastrar: ");
-					opcaoInterna = sc.nextInt();
+				System.out.println("1. Pessoa física ;");
+				System.out.println("2. Pessoa Jurídica;");
+				System.out.println("Digite qual o tipo de cliente que você deseja cadastrar: ");
+				opcaoInterna = sc.nextInt();
 						
-					sc.nextLine();
+				sc.nextLine();
 					
-					if (ultimoCliente == BDCliente.length) {
-				        Cliente[] aux = new Cliente[BDCliente.length + 1];
-				        for (int i = 0; i < BDCliente.length; i++) {
-				            aux[i] = BDCliente[i];
-				        }
-				        BDCliente = aux;
-
+				if (ultimoCliente == BDCliente.length) {
+					Cliente[] aux = new Cliente[BDCliente.length + 1];
+					for (int i = 0; i < BDCliente.length; i++) {
+						aux[i] = BDCliente[i];
+						}
+					BDCliente = aux;
+					
 					if (opcaoInterna == 1) {
 						System.out.println("Digite o nome do cliente");
 						nome = sc.nextLine();
@@ -164,7 +152,8 @@ public class Main {
 						BDCliente[ultimoProduto] = pesFis; 
 						ultimoProduto++;
 
-					} else if (opcaoInterna == 2) {
+					} 
+					else if (opcaoInterna == 2) {
 						System.out.println("Digite o nome do cliente");
 						nome = sc.nextLine();
 						System.out.println("Digite o endereço do cliente: ");
@@ -177,7 +166,7 @@ public class Main {
 						pesJur = new PessoaJuridica(nome, endereco, telefone, cnpj);
 						BDCliente[ultimoProduto] = pesJur; 
 						ultimoProduto++;
-					}
+						}
 					}
 			case 4:
 				// Alterar cliente
@@ -187,57 +176,57 @@ public class Main {
 				// perguntar se tem cupom de desconto (só pra ter um extra); resumo subtotal e total
 				
 			case 6:
-					System.out.println("\n--- Lista de Notas Emitidas ---");
-					boolean encontrouNota = false;
-					for (Nota nota : bdNota) {
-						if (nota != null) {
-							nota.exibirNotaFiscal();
-							encontrouNota = true;
+				System.out.println("\n--- Lista de Notas Emitidas ---");
+				boolean encontrouNota = false;
+				for (Nota nota : BDNota) {
+					if (nota != null) {
+						nota.exibirNotaFiscal();
+						encontrouNota = true;
 						}
 					}
-					if (!encontrouNota) {
-						System.out.println("Nenhuma nota fiscal foi emitida no sistema.");
+				if (!encontrouNota) {
+					System.out.println("Nenhuma nota fiscal foi emitida no sistema.");
 					}
-					break; 	
+				break; 	
 								
 			case 7:
-					System.out.println("\n--- Lista de Produtos Cadastrados ---");
-    				boolean encontrouProduto = false;
+				System.out.println("\n--- Lista de Produtos Cadastrados ---");
+    			boolean encontrouProduto = false;
 
-    				for (Produto produto : BDProduto) {
-       				 if (produto != null) {
-           				encontrouProduto = true;
+    			for (Produto produto : BDProduto) {
+    				if (produto != null) {
+    					encontrouProduto = true;
             			produto.exibirDetalhes();  
            		        System.out.println("-------------------------------------");
-        	}
-    	}
-
-    				if (!encontrouProduto) {
-       				 System.out.println("Nenhum produto cadastrado no sistema.");
-    	}
-    				break;
+           		        }
+    				}
+    			if (!encontrouProduto) {
+       			System.out.println("Nenhum produto cadastrado no sistema.");
+       			System.out.println("-------------------------------------");
+       			}
+    			break;
 			case 8:
-					System.out.println("\n--- Lista de Clientes Cadastrados ---");
-    				boolean encontrouCliente = false;
-					for (Cliente cliente : BDCliente) {
-        			if (cliente != null) {
-            			cliente.exibirDetalhes();
+				System.out.println("\n--- Lista de Clientes Cadastrados ---");
+    			boolean encontrouCliente = false;
+				for (Cliente cliente : BDCliente) {
+					if (cliente != null) {
+						cliente.exibirDetalhes();
             			System.out.println("-------------------------------------");
             			encontrouCliente = true;
-       		 }
-   		 }
-    				if (!encontrouCliente) {
-      			  System.out.println("Nenhum cliente cadastrado no sistema.");
-    	}
-    				break;
-			}
+            			}
+					}
+				if (!encontrouCliente) {
+					System.out.println("Nenhum cliente cadastrado no sistema.");
+					System.out.println("-------------------------------------");
+					}
+				break;
+				}
 			
 			menu();
 			opcao=sc.nextInt();
-	}
-		
-	}
-	
+			}
+		}
+
 	public static void menu() {
 		
 		System.out.println("1. Cadastrar produto;");

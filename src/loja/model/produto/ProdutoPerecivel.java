@@ -6,9 +6,9 @@ public class ProdutoPerecivel extends ProdutoFisico {
 
     private LocalDate dataValidade;
 
-    public ProdutoPerecivel(int codigo, String nome, String descricao, BigDecimal preco, double pesoKg,int estoque, LocalDate dataValidade){
+    public ProdutoPerecivel(String nome, String descricao, BigDecimal preco, double pesoKg,int estoque, LocalDate dataValidade){
 
-        super(codigo, nome, descricao, preco, pesoKg,estoque);
+        super(nome, descricao, preco, pesoKg,estoque);
 
         this.dataValidade = dataValidade;
 
@@ -25,7 +25,7 @@ public class ProdutoPerecivel extends ProdutoFisico {
     @Override
     public void exibirDetalhes() {
         super.exibirDetalhes(); 
-        System.out.println("Data de Validade: " getDataValidade());
+        System.out.println("Data de Validade: " + getDataValidade());
         if (estaVencido()) {
             System.out.println("ATENÇÃO: PRODUTO VENCIDO!");
     }

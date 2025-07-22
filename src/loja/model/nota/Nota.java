@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import loja.model.cliente.*;
+import loja.model.produto.*;
 
 public class Nota {
 
@@ -117,12 +118,10 @@ public class Nota {
     System.out.println("---------------------------------------------");
     System.out.println("ITENS DA COMPRA:");
 
-    // Loop para mostrar os itens de forma simples
     for (int i = 0; i < this.ProxPosicao; i++) {
         ItemNota item = this.itens[i];
         Produto produto = item.getProduto();
 
-        // Imprime cada item em uma linha usando println e concatenação
         System.out.println(
             item.getQuantidade() + "x " +
             produto.getNome() +
@@ -132,8 +131,6 @@ public class Nota {
     }
 
     System.out.println("---------------------------------------------");
-    
-    // Imprime os totais de forma simples
     System.out.println("SUBTOTAL: R$ " + this.somaSubtotalFinal());
     System.out.println("FRETE: R$ " + this.getFrete());
     System.out.println("=============================================");

@@ -6,8 +6,8 @@ public class ProdutoDigital extends Produto {
     private String linkDownload;
     private double tamanhoArquivoMB; 
 
-    public ProdutoDigital(int codigo, String nome, String descricao, BigDecimal preco, String linkDownload, double tamanhoArquivoMB) {
-        super(codigo, nome, descricao, preco);
+    public ProdutoDigital(String nome, String descricao, BigDecimal preco, String linkDownload, double tamanhoArquivoMB) {
+        super(nome, descricao, preco);
 
         this.linkDownload = linkDownload;
         this.tamanhoArquivoMB = tamanhoArquivoMB;
@@ -28,7 +28,7 @@ public class ProdutoDigital extends Produto {
     @Override
     public void exibirDetalhes() {
         super.exibirDetalhes(); 
-        System.out.println("Tamanho: " getTamanhoArquivoMB());
-        System.out.println("Link: " getLinkDownload());
+        System.out.println("Tamanho: " + getTamanhoArquivoMB());
+        System.out.println("Link: " + getLinkDownload());
     }
 }

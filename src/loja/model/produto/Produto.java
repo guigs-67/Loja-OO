@@ -6,9 +6,11 @@ public class Produto {
     private String nome;
     private String descricao;
     private BigDecimal preco;
+    private static int contador = 0;
 
-    public Produto(int codigo, String nome, String descricao, BigDecimal preco) {
-        this.codigo = codigo;
+    public Produto(String nome, String descricao, BigDecimal preco) {
+    	contador++;
+        this.codigo = contador;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
