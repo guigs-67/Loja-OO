@@ -256,7 +256,7 @@ public class Main {
 					}
 			case 4:
 				System.out.println("------ Alterando um Cliente ------");
-        System.out.println("Verifique a lista de produtos cadastrados e digite o código do produto que você deseja alterar");
+        System.out.println("Verifique a lista de cleintes cadastrados e digite o cpf/cnpj do cliente que você deseja alterar");
         System.out.println("\n--- Lista de clientes Cadastrados ---");
     	boolean encontrouCliente = false;
 		for (Cliente cliente : BDCliente) {
