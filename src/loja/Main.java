@@ -13,7 +13,7 @@ public class Main {
 	
 	private static int ultimoProduto = 0;
 	private static int ultimoCliente = 0;
-	// private static int ultimaNota = 0;
+	private static int ultimaNota = 0;
 
 	public static void main(String[] args) {
 		java.util.Scanner sc = new Scanner (System.in);
@@ -307,9 +307,140 @@ public class Main {
         }
         break;
 			case 5:
-				// Criar nota de compra (selecionar cliente -> listar/filtrar); adicionar itens até confirmar;
-				// perguntar se tem cupom de desconto (só pra ter um extra); resumo subtotal e total
-				break;
+			    System.out.println("\n------ Criando Nota Fiscal ------");
+
+			    if (ultimoCliente == 0) {
+			        System.out.println("ERRO: Nenhum cliente cadastrado. Cadastre um cliente primeiro.");
+			        break;
+			    }
+
+			    System.out.println("Clientes disponíveis:");
+			    for (int i = 0; i < ultimoCliente; i++) {
+			        BDCliente[i].exibirDetalhes();
+			        System.out.println("-------------------------------------");
+			    }
+
+			    System.out.print("Digite o CPF ou CNPJ do cliente para a nota: ");
+			    String docCliente = sc.nextLine();
+
+			    Cliente clienteSelecionado = null;
+			    for (int i = 0; i < ultimoCliente; i++) {
+			        if (BDCliente[i].getDocumento().equals(docCliente)) {
+			            clienteSelecionado = BDCliente[i];
+			            break;
+			        }
+			    }
+
+			    if (clienteSelecionado == null) {
+			        System.out.println("ERRO: Cliente com documento '" + docCliente + "' não encontrado. Operação cancelada.");
+			        break;
+			    }
+			    System.out.println("Cliente selecionado: " + clienteSelecionado.getNome());
+
+			    if (ultimoProduto == 0) {
+			        System.out.println("ERRO: Nenhum produto cadastrado. Cadastre um produto antes de criar uma nota.");
+			        break;
+			    }
+
+			    ItemNota[] itensTemporarios = new ItemNota[10];
+			    int proximaPosicaoItem = 0;
+
+			    while (true) {
+			        System.out.println("\n--- Adicionar Item ---");
+			        System.out.println("Produtos disponíveis:");
+			        for (int i = 0; i < ultimoProduto; i++) {
+			            BDProduto[i].exibirDetalhes();
+			            System.out.println("-------------------------------------");
+			        }
+
+			        System.out.print("Digite o código do produto para adicionar (ou 0 para finalizar a nota): ");
+			        int codigoProduto = sc.nextInt();
+			        sc.nextLine();
+
+			        if (codigoProduto == 0) {
+			            break;
+			        }
+
+			        Produto produtoSelecionado = null;
+			        for (int i = 0; i < ultimoProduto; i++) {
+			            if (BDProduto[i].getCodigo() == codigoProduto) {
+			                produtoSelecionado = BDProduto[i];
+			                break;
+			            }
+			        }
+
+			        if (produtoSelecionado == null) {
+			            System.out.println("ERRO: Produto com o código " + codigoProduto + " não encontrado. Tente novamente.");
+			            continue;
+			        }
+
+			        System.out.print("Digite a quantidade: ");
+			        int quantidade = sc.nextInt();
+			        sc.nextLine();
+
+			        if (quantidade <= 0) {
+			            System.out.println("ERRO: A quantidade deve ser um número positivo.");
+			            continue;
+			        }
+
+			        if (produtoSelecionado instanceof ProdutoFisico) {
+			            ProdutoFisico pf = (ProdutoFisico) produtoSelecionado;
+			            if (!pf.darBaixaEstoque(quantidade)) {
+			                System.out.println("ERRO: Estoque insuficiente. O item não foi adicionado.");
+			                continue;
+			            }
+			        } else if (produtoSelecionado instanceof ProdutoPerecivel) {
+			            ProdutoPerecivel pp = (ProdutoPerecivel) produtoSelecionado;
+			            if (!pp.darBaixaEstoque(quantidade)) {
+			                System.out.println("ERRO: Estoque insuficiente. O item não foi adicionado.");
+			                continue;
+			            }
+			        }
+
+			        ItemNota itemParaAdicionar = new ItemNota(produtoSelecionado, quantidade);
+
+			        if (proximaPosicaoItem == itensTemporarios.length) {
+			            ItemNota[] aux = new ItemNota[proximaPosicaoItem + 10];
+			            for (int i = 0; i < itensTemporarios.length; i++) {
+			                aux[i] = itensTemporarios[i];
+			            }
+			            itensTemporarios = aux;
+			        }
+			        itensTemporarios[proximaPosicaoItem] = itemParaAdicionar;
+			        proximaPosicaoItem++;
+
+			        System.out.println(">> Item '" + produtoSelecionado.getNome() + "' adicionado à nota com sucesso! <<");
+			    }
+
+			    if (proximaPosicaoItem == 0) {
+			        System.out.println("Nenhum item foi adicionado. A criação da nota foi cancelada.");
+			        break;
+			    }
+
+			    BigDecimal subtotalFinal = BigDecimal.ZERO;
+			    for(int i = 0; i < proximaPosicaoItem; i++) {
+			        subtotalFinal = subtotalFinal.add(itensTemporarios[i].getPrecoFinalItem());
+			    }
+			    
+			    BigDecimal frete = new BigDecimal("50.00");
+			    BigDecimal total = subtotalFinal.add(frete);
+
+			    Nota notaAtual = new Nota(clienteSelecionado, itensTemporarios, subtotalFinal, BigDecimal.ZERO, frete, total);
+
+			    for (int i = 0; i < proximaPosicaoItem; i++) {
+			        notaAtual.adicionarItem(itensTemporarios[i]);
+			    }
+			    
+			    if (ultimaNota < BDNota.length) {
+			        BDNota[ultimaNota] = notaAtual;
+			        ultimaNota++;
+			        
+			        System.out.println("\n------ NOTA FISCAL CRIADA COM SUCESSO ------");
+			        notaAtual.exibirNotaFiscal();
+			    } else {
+			        System.out.println("ERRO: Não há mais espaço para salvar novas notas fiscais.");
+			    }
+			    break;
 			case 6:
 				System.out.println("\n--- Lista de Notas Emitidas ---");
 				boolean encontrouNota = false;

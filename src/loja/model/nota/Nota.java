@@ -22,13 +22,18 @@ public class Nota {
     public Nota(Cliente cliente, ItemNota[] itens, BigDecimal subtotalFinal, BigDecimal desconto, BigDecimal frete, BigDecimal total){
 
         this.cliente = cliente;
-        this.itens = new ItemNota[10];
+        this.itens = itens; 
         this.subtotalFinal = subtotalFinal;
-        this.frete = new BigDecimal(50);
+        this.frete = frete; 
         this.total = total;
         this.id = 1;
         this.data = LocalDate.now();
         this.ProxPosicao = 0;
+        for(ItemNota item : itens){
+            if (item != null) {
+                this.ProxPosicao++;
+            }
+        }
     }
 
     public void setSubtotalFinal(BigDecimal subtotalFinal){
@@ -74,6 +79,10 @@ public class Nota {
     public String getData(){
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return data.format(formatador);
+    }
+    
+    public int getProxPosicao() {
+    	return ProxPosicao;
     }
 
     public void adicionarItem(ItemNota novoItem){
@@ -138,4 +147,3 @@ public class Nota {
     System.out.println("=============================================\n");
 }
 }
-
