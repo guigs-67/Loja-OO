@@ -91,7 +91,7 @@ public class Nota {
     public BigDecimal somaSubtotalFinal() {
         BigDecimal acc = new BigDecimal("0.0"); 
         for (int i = 0; i < this.ProxPosicao; i++) {
-            acc = acc.add(this.itens[i].getPrecoFinalItem());
+            acc = acc.add(( this.itens[i]).getPrecoFinalItem());
         }
         return acc;
     }

@@ -17,8 +17,9 @@ public class PessoaFisica extends Cliente {
 	} 
 
 	@Override
-    public void exibirDetalhes() {
+	public void exibirDetalhes() {
+		System.out.println("Tipo: Pessoa física.");
 	    super.exibirDetalhes();
-		 System.out.println("CPF: " getCpf());
+		 System.out.println("CPF: " + getCpf());
 	}
 }

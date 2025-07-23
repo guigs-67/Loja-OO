@@ -44,11 +44,12 @@ public class ProdutoFisico extends Produto {
             return false; //
         }
     }
-
-    @Override 
-     public void exibirDetalhes() {
-        super.exibirDetalhes();
+    
+    @Override
+	public void exibirDetalhes() {
+    	System.out.println("Tipo: Produto físico.");
+		super.exibirDetalhes();
         System.out.println("Estoque: " + getEstoque());
         System.out.println("Peso: " + getPesoKg());
-    }
+	}
 }

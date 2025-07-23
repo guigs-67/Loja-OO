@@ -18,7 +18,8 @@ private String cnpj;
 
 	@Override
     public void exibirDetalhes() {
+		System.out.println("Tipo: Pessoa jurídica.");
 	    super.exibirDetalhes();
-		System.out.println("CNPJ: " getCnpj());
+		System.out.println("CNPJ: " + getCnpj());
 	}
 }
