@@ -6,9 +6,9 @@ public class ProdutoPerecivel extends ProdutoFisico {
 
     private LocalDate dataValidade;
 
-    public ProdutoPerecivel(String nome, String descricao, BigDecimal preco, double pesoKg,int estoque, LocalDate dataValidade){
+    public ProdutoPerecivel(String nome, String descricao, BigDecimal preco,int estoque, double pesoKg, LocalDate dataValidade){
 
-        super(nome, descricao, preco, pesoKg,estoque);
+        super(nome, descricao, preco,estoque, pesoKg);
 
         this.dataValidade = dataValidade;
 
@@ -16,6 +16,10 @@ public class ProdutoPerecivel extends ProdutoFisico {
 
     public LocalDate getDataValidade() {
         return dataValidade;
+    }
+
+    public void setDataValidade(LocalDate dataValidade){
+        this.dataValidade = dataValidade;
     }
 
     public boolean estaVencido() {

@@ -70,7 +70,7 @@ public class Main {
 					pesoKg = sc.nextDouble();
 					sc.nextLine();
 					
-					proFis = new ProdutoFisico(nome, descricao, preco, pesoKg,estoque);
+					proFis = new ProdutoFisico(nome, descricao, preco,estoque, pesoKg);
 					BDProduto[ultimoProduto] = proFis; 
 					ultimoProduto++;
 					}
@@ -82,13 +82,16 @@ public class Main {
 					System.out.println("Digite o preço do produto: ");
 					preco = sc.nextBigDecimal();
 					sc.nextLine();
+					System.out.println("Digite a quantidade em estoque do produto: ");
+					estoque = sc.nextInt();
+					sc.nextLine();
 					System.out.println("Digite o link para download: ");
 					linkDownload = sc.nextLine();
 					System.out.println("Digite o tamanho do arquivo em MB:");
 					tamanhoArquivoMB = sc.nextDouble();
 					sc.nextLine(); 
 						
-					proDig = new ProdutoDigital(nome, descricao, preco, linkDownload, tamanhoArquivoMB);
+					proDig = new ProdutoDigital(nome, descricao, preco, estoque, linkDownload, tamanhoArquivoMB);
 					BDProduto[ultimoProduto] = proDig; 
 					ultimoProduto++;
 					}
@@ -115,14 +118,97 @@ public class Main {
 					sc.nextLine(); 
 					dataValidade = LocalDate.of(ano, mes, dia);
 					
-					proPer = new ProdutoPerecivel(nome, descricao, preco, pesoKg,estoque, dataValidade);
+					proPer = new ProdutoPerecivel(nome, descricao, preco,estoque, pesoKg, dataValidade);
 					BDProduto[ultimoProduto] = proPer;
 					ultimoProduto++;
 					}
 				break;
 			case 2:
-				// Alterar produto
-				
+				//Case 2
+        System.out.println("------ Alterando o Produto ------");
+        System.out.println("Verifique a lista de produtos cadastrados e digite o código do produto que você deseja alterar");
+
+        System.out.println("\n--- Lista de Produtos Cadastrados ---");
+    	boolean encontrouProduto = false;
+
+    	for (Produto produto : BDProduto) {
+       		if (produto != null) {
+           		encontrouProduto = true;
+            	produto.exibirDetalhes();  
+           		System.out.println("-------------------------------------");
+        	}
+    	}
+
+    	if (!encontrouProduto) {
+       		System.out.println("Nenhum produto cadastrado no sistema.");
+        }
+        System.out.println("Digite o código do produto que deseja alterar:");
+        int codAlterar = sc.nextInt();
+        sc.nextLine();
+        Produto produtoAlterado = null;
+        for (Produto produto : BDProduto){
+            if (produto.getCodigo() == codAlterar){
+                produtoAlterado = produto;
+            }
+        }
+        if (produtoAlterado != null){
+                System.out.println(" ------ Produto encontrado -----");
+                System.out.println("Codigo e nome não são alteráveis, modifique os seguintes atributos:");
+                System.out.println("Digite uma nova descrição:");
+				String novaDescricao = sc.nextLine();
+                System.out.println("Digite um novo preço:");
+				BigDecimal novoPreco = sc.nextBigDecimal();
+				sc.nextLine();
+                System.out.println("Digite um novo estoque:"); 
+				int novoEstoque = sc.nextInt();
+				sc.nextLine();
+                produtoAlterado.setDescricao(novaDescricao);
+                produtoAlterado.setPreco(novoPreco);
+                produtoAlterado.setEstoque(novoEstoque);
+                if (produtoAlterado instanceof ProdutoDigital pd) {
+                    System.out.println("Digite um novo link para Download:"); 
+				    String novoLinkDownload = sc.nextLine();
+                    System.out.println("Digite um novo tamanho de arquivo em MB:");
+				    double novoTamanhoArquivoMB = sc.nextDouble();
+				    sc.nextLine(); 
+                    pd.setLinkDownload(novoLinkDownload);
+                    pd.setTamanhoArquivoMB(novoTamanhoArquivoMB);
+
+                System.out.println("------ Produto digital alterado com sucesso! ------");
+                }
+                else if (produtoAlterado instanceof ProdutoPerecivel pp) {
+                    System.out.println("Digite um novo peso:");
+                    double novoPesoKg = sc.nextDouble();
+                    sc.nextLine();
+                    System.out.println("Digite uma nova data de validade:");
+                    System.out.println("Dia:");
+                    int novoDia = sc.nextInt();
+                    sc.nextLine(); 
+                    System.out.println("Mês:");
+			        int novoMes = sc.nextInt();
+                    sc.nextLine(); 
+                    System.out.println("Ano:");
+			        int novoAno = sc.nextInt();
+			        sc.nextLine(); 
+			        LocalDate novaDataValidade = LocalDate.of(novoAno, novoMes, novoDia);
+                    pp.setDataValidade(novaDataValidade);
+                    pp.setPesoKg(novoPesoKg);
+                    
+
+                    System.out.println("------ Produto perecível alterado com sucesso! ------");
+                }
+                else if (produtoAlterado instanceof ProdutoFisico prodf) {
+                    System.out.println("Digite um novo peso:");
+                    double novoPesoKg = sc.nextDouble();
+                    sc.nextLine();
+                    prodf.setPesoKg(novoPesoKg);
+                    System.out.println("------ Produto físico alterado com sucesso! ------");
+                }
+        else {
+            System.out.println("------ ERRO: Produto com o código " + codAlterar + " não encontrado. ------");
+        }
+	}
+			break;
 			case 3:
 				System.out.println("1. Pessoa física ;");
 				System.out.println("2. Pessoa Jurídica;");
@@ -169,7 +255,56 @@ public class Main {
 						}
 					}
 			case 4:
-				// Alterar cliente
+				System.out.println("------ Alterando um Cliente ------");
+        System.out.println("Verifique a lista de produtos cadastrados e digite o código do produto que você deseja alterar");
+        System.out.println("\n--- Lista de clientes Cadastrados ---");
+    	boolean encontrouCliente = false;
+		for (Cliente cliente : BDCliente) {
+			if (cliente != null) {
+				cliente.exibirDetalhes();
+            	System.out.println("-------------------------------------");
+            	encontrouCliente = true;
+            }
+		}
+		if (!encontrouCliente) {
+			System.out.println("Nenhum cliente cadastrado no sistema.");
+			System.out.println("-------------------------------------");
+		}
+        System.out.println("Digite o nome do cliente que deseja alterar:");
+        String nomeAlterar = sc.nextLine();
+        Cliente clienteAlterado = null;
+        for (Cliente cliente : BDCliente){
+            if (cliente.getNome() == nomeAlterar){
+                clienteAlterado = cliente;
+            }
+        }
+        if (clienteAlterado != null){
+            System.out.println(" ------ Cliente encontrado -----");
+            System.out.println("Nome do cliente não é alterável, modifique os seguintes atributos:");
+            System.out.println("Digite um novo endereço:");
+			String novoEndereco = sc.nextLine();
+            System.out.println("Digite um novo telefone:");
+			String novoTelefone = sc.nextLine();
+            clienteAlterado.setEndereco(novoEndereco);
+            clienteAlterado.setTelefone(novoTelefone);
+            if(clienteAlterado instanceof PessoaFisica pf){
+                System.out.println("Digite um novo CPF:"); 
+				String novoCpf = sc.nextLine();
+                pf.setCpf(novoCpf);
+                System.out.println("------ Cliente Físico alterado com sucesso! ------");
+            }
+            else if (clienteAlterado instanceof PessoaJuridica pj){
+                System.out.println("Digite um novo Cnpj:"); 
+				String novoCnpj = sc.nextLine();
+                pj.setCnpj(novoCnpj);
+
+                System.out.println("------ Cliente Jurídico alterado com sucesso! ------");
+            }
+        }
+        else{
+            System.out.println("------ ERRO: Cliente com nome: " + nomeAlterar + " não encontrado. ------");
+        }
+		break;
 				
 			case 5:
 				// Criar nota de compra (selecionar cliente -> listar/filtrar); adicionar itens até confirmar;
@@ -191,31 +326,31 @@ public class Main {
 								
 			case 7:
 				System.out.println("\n--- Lista de Produtos Cadastrados ---");
-    			boolean encontrouProduto = false;
+    			boolean encontraProduto = false;
 
     			for (Produto produto : BDProduto) {
     				if (produto != null) {
-    					encontrouProduto = true;
+    					encontraProduto = true;
             			produto.exibirDetalhes();  
            		        System.out.println("-------------------------------------");
            		        }
     				}
-    			if (!encontrouProduto) {
+    			if (!encontraProduto) {
        			System.out.println("Nenhum produto cadastrado no sistema.");
        			System.out.println("-------------------------------------");
        			}
     			break;
 			case 8:
 				System.out.println("\n--- Lista de Clientes Cadastrados ---");
-    			boolean encontrouCliente = false;
+    			boolean encontraCliente = false;
 				for (Cliente cliente : BDCliente) {
 					if (cliente != null) {
 						cliente.exibirDetalhes();
             			System.out.println("-------------------------------------");
-            			encontrouCliente = true;
+            			encontraCliente = true;
             			}
 					}
-				if (!encontrouCliente) {
+				if (!encontraCliente) {
 					System.out.println("Nenhum cliente cadastrado no sistema.");
 					System.out.println("-------------------------------------");
 					}
