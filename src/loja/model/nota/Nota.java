@@ -138,7 +138,6 @@ public class Nota {
             " - Subtotal: R$ " + item.getPrecoFinalItem()
         );
     }
-
     System.out.println("---------------------------------------------");
     System.out.println("SUBTOTAL: R$ " + this.somaSubtotalFinal());
     System.out.println("FRETE: R$ " + this.getFrete());
