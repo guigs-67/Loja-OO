@@ -79,11 +79,6 @@ public abstract class Produto {
         System.out.println("Nome: " + getNome());
         System.out.printf("Preço: R$ %.2f%n", getPreco());
     }
+	
     public abstract String getTipoProduto();
-	}
-
-	public void setEstoque(int novoEstoque) {
-		// TODO Auto-generated method stub
-		
-	}
 }

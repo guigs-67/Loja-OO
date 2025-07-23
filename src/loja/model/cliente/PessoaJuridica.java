@@ -20,7 +20,7 @@ public class PessoaJuridica extends Cliente {
     public String getDocumento() {
         return this.cnpj;
     }
-}
+    
 	@Override
     public void exibirDetalhes() {
 		System.out.println("Tipo: Pessoa jurídica.");

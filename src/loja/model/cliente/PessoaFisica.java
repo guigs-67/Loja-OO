@@ -19,7 +19,7 @@ public class PessoaFisica extends Cliente {
     public String getDocumento() {
         return this.cpf;
     }
-}
+
 	@Override
 	public void exibirDetalhes() {
 		System.out.println("Tipo: Pessoa física.");

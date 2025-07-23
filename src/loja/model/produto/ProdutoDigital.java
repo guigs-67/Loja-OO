@@ -29,6 +29,7 @@ public class ProdutoDigital extends Produto {
    }
     @Override
     public void exibirDetalhes() {
+    	System.out.println("Tipo: " + getTipoProduto());
         super.exibirDetalhes();
         System.out.println("Tamanho: " + getTamanhoArquivoMB() + " MB");
         System.out.println("Link: " + getLinkDownload());
@@ -37,15 +38,5 @@ public class ProdutoDigital extends Produto {
     @Override
     public String getTipoProduto() {
         return "Digital";
-    }
-    	System.out.println("Tipo: Produto digital.");
-        super.exibirDetalhes(); 
-        System.out.println("Tamanho: " + getTamanhoArquivoMB());
-        System.out.println("Link: " + getLinkDownload());
-    }
-
-	public void setTamanhoArquivoMB(double tamanhoArquivoMB) {
-		this.tamanhoArquivoMB = tamanhoArquivoMB;
-		
 	}
 }
