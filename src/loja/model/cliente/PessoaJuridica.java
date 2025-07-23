@@ -21,3 +21,10 @@ public class PessoaJuridica extends Cliente {
         return this.cnpj;
     }
 }
+	@Override
+    public void exibirDetalhes() {
+		System.out.println("Tipo: Pessoa jurídica.");
+	    super.exibirDetalhes();
+		System.out.println("CNPJ: " + getCnpj());
+	}
+}

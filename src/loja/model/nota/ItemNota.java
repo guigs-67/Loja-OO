@@ -24,7 +24,7 @@ public class ItemNota{
         return quantidade;
     }
 
-    public BigDecimal getPrecoFinalItem(){
-        return produto.getPreco().multiply(new BigDecimal(this.quantidade));
-    }
+	public BigDecimal getPrecoFinalItem() {
+		return produto.getPreco().multiply(new BigDecimal(this.quantidade));
+	}
 }

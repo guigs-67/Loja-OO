@@ -38,4 +38,14 @@ public class ProdutoDigital extends Produto {
     public String getTipoProduto() {
         return "Digital";
     }
+    	System.out.println("Tipo: Produto digital.");
+        super.exibirDetalhes(); 
+        System.out.println("Tamanho: " + getTamanhoArquivoMB());
+        System.out.println("Link: " + getLinkDownload());
+    }
+
+	public void setTamanhoArquivoMB(double tamanhoArquivoMB) {
+		this.tamanhoArquivoMB = tamanhoArquivoMB;
+		
+	}
 }
