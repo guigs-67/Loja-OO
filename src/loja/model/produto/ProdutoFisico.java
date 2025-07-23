@@ -6,9 +6,8 @@ public class ProdutoFisico extends Produto {
     private double pesoKg;
     private int estoque;
 
-    public ProdutoFisico(String nome, String descricao, BigDecimal preco, double pesoKg,int estoque) {
+    public ProdutoFisico(String nome, String descricao, BigDecimal preco, double pesoKg, int estoque) {
         super(nome, descricao, preco);
-
         this.pesoKg = pesoKg;
         this.estoque = estoque;
     }
@@ -36,19 +35,23 @@ public class ProdutoFisico extends Produto {
         }
         if (this.estoque >= quantidadeParaRemover) {
             this.estoque -= quantidadeParaRemover;
-            System.out.println("Baixa no estoque de " + getNome() + " realizada com sucesso.");
-            return true; 
-
+            System.out.println("Baixa no estoque de '" + getNome() + "' realizada com sucesso.");
+            return true;
         } else {
             System.out.println("Não temos estoque suficiente de " + getNome());
-            return false; //
+            return false;
         }
     }
 
-    @Override 
-     public void exibirDetalhes() {
+    @Override
+    public void exibirDetalhes() {
         super.exibirDetalhes();
         System.out.println("Estoque: " + getEstoque());
-        System.out.println("Peso: " + getPesoKg());
+        System.out.println("Peso: " + getPesoKg() + " kg");
+    }
+
+    @Override
+    public String getTipoProduto() {
+        return "Físico";
     }
 }

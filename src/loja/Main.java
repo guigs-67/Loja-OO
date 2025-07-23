@@ -1,4 +1,4 @@
-package loja;
+ package loja;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -131,7 +131,7 @@ public class Main {
 						
 				sc.nextLine();
 					
-				if (ultimoCliente == BDCliente.length) {
+				if (ultimoCliente == BDCliente.length) {	
 					Cliente[] aux = new Cliente[BDCliente.length + 1];
 					for (int i = 0; i < BDCliente.length; i++) {
 						aux[i] = BDCliente[i];
@@ -205,6 +205,7 @@ public class Main {
        			System.out.println("-------------------------------------");
        			}
     			break;
+				
 			case 8:
 				System.out.println("\n--- Lista de Clientes Cadastrados ---");
     			boolean encontrouCliente = false;
